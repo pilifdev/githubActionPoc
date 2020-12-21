@@ -1,0 +1,12 @@
+name: md to html
+
+on: push
+
+jobs:
+  convert_md_to_html_via_pandoc:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: docker://pandoc/core:2.9
+        with:
+          args: "-f markdown -t html5 -o termsAndConditions.html termsAndConditions.md"
+          
