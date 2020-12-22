@@ -29,10 +29,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: termsAndConditions
-#      - uses: garygrossgarten/github-action-scp@release
-#        with:
-#          local: termsAndConditions.html
-#          remote: scp/single/termsAndConditions.html
-#          host: ${{ secrets.HOST }}
-#          username: ${{ secrets.SSH_USER }}
-#          password: ${{ secrets.PASSWORD }}
+      - uses: garygrossgarten/github-action-scp@release
+        with:
+          local: termsAndConditions.html
+          remote: scp/tsandcs/termsAndConditions.html
+          host: ${{ secrets.TSANDCS_HOST }}
+          username: ${{ secrets.TSANDCS_SSH_USER }}
+          password: ${{ secrets.TSANDCS_SSH_PASSWORD }}
