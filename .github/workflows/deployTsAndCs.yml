@@ -3,8 +3,6 @@ name: Deploy TsAndCs
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   deploys_tsAndCs:
