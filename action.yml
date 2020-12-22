@@ -3,7 +3,6 @@ description: 'To convert TsAndCs from md to html'
 outputs:
   time: # id of output
     description: 'The time we converted'
-on: push
 runs:
   using: 'docker'
   image: 'Dockerfile'

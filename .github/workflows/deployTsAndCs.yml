@@ -6,5 +6,6 @@ jobs:
   deploys_tsAndCs:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
       - uses: ./.github/actions/poc-action
       
