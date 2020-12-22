@@ -7,7 +7,7 @@ on:
       - withPandocContainer
 
 jobs:
-  deploys_tsAndCs:
+  prepareHtmlFile:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -21,12 +21,18 @@ jobs:
           name: termsAndConditions
           path: output/termsAndConditions.html
           retention-days: 1
-#
+
+  uploadHtmlFile:
+    needs: prepareHtmlFile
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: termsAndConditions
 #      - uses: garygrossgarten/github-action-scp@release
 #        with:
-#          local: test/oof.txt
-#          remote: scp/single/oof.txt
+#          local: termsAndConditions.html
+#          remote: scp/single/termsAndConditions.html
 #          host: ${{ secrets.HOST }}
 #          username: ${{ secrets.SSH_USER }}
 #          password: ${{ secrets.PASSWORD }}
-#
