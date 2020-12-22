@@ -2,17 +2,22 @@ name: Deploy TsAndCs
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - withPandocContainer
 
 jobs:
   deploys_tsAndCs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/actions/poc-action
-      - name: Archive the TsAndCs as html 
-        uses: actions/upload-artifact@v2
+      - run: |
+          mkdir output
+      - uses: docker://pandoc/latex:2.9
         with:
-          name: termsAndConditions
-          path: /termsAndConditions.html
-      
+          args: --from markdown --to html5 --output=output/termsAndConditions.html termsAndConditions.md
+      - uses: actions/upload-artifact@master
+        with:
+          name: output
+          path: output
+          
