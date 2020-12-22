@@ -1,7 +1,7 @@
 # Prerequisites
 Go to https://github.com/pilif42/githubActionPoc/settings/secrets/actions
 Add Environment secrets:
-    - env = dev: TSANDCS_HOST, TSANDCS_SSH_USER & TSANDCS_SSH_PASSWORD
+    - env = dev: TSANDCS_HOST, TSANDCS_SSH_USER, PORT & KEY
     - same thing for env = test
 
 
