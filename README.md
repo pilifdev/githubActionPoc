@@ -1,11 +1,15 @@
 # githubActionPoc
 
 
-# Convert .md to .html GitHub Action - 1st option/attempt
-In the GitHub UI, I created a file .github/workflows/mdToHtml.yml
-I copied the content from https://github.com/pandoc/pandoc-action-example/blob/master/.github/workflows/simple.yml
-I amended the content to use the pandoc cmd: pandoc -f markdown -t html5 -o output.html input.md -c style.css
+# Workflow
+Defined in .github/workflows/deployTsAndCs.yml
 
 
-# Convert .md to .html GitHub Action - 2nd option/attempt
-I used as a reference: https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/creating-a-docker-container-action
+# Action
+Defined in .github/actions/poc-action/action.yml
+
+
+# Important notes
+- convertToHtml.sh was added to the repo with: git add --chmod=+x -- .github/actions/poc-action/convertToHtml.sh
+	- this is to make sure that it can be executed in the Docker container. If you forget this step, you get: permission denied.
+	
