@@ -6,6 +6,9 @@ on:
       - main
       - withPandocContainer
 
+env:
+  environment: 'dev'
+
 jobs:
   prepareHtmlFile:
     runs-on: ubuntu-18.04
@@ -40,14 +43,14 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: termsAndConditions
-      - uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.TSANDCS_HOST }}
-          username: ${{ secrets.TSANDCS_SSH_USER }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.KEY }}
-          source: "termsAndConditions.html"
-          target: "termsAndConditions.html"
+#      - uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.TSANDCS_HOST }}
+#          username: ${{ secrets.TSANDCS_SSH_USER }}
+#          port: ${{ secrets.PORT }}
+#          key: ${{ secrets.KEY }}
+#          source: "termsAndConditions.html"
+#          target: "termsAndConditions.html"
 
   uploadVersionFile:
     needs: prepareVersionFile
@@ -56,11 +59,11 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: version
-      - uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.TSANDCS_HOST }}
-          username: ${{ secrets.TSANDCS_SSH_USER }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.KEY }}
-          source: "version.txt"
-          target: "version.txt"
+#      - uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.TSANDCS_HOST }}
+#          username: ${{ secrets.TSANDCS_SSH_USER }}
+#          port: ${{ secrets.PORT }}
+#          key: ${{ secrets.KEY }}
+#          source: "version.txt"
+#          target: "version.txt"
