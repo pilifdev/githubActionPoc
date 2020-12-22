@@ -13,4 +13,6 @@ Inspired from:
     - https://docs.github.com/en/free-pro-team@latest/actions/guides/storing-workflow-data-as-artifacts
 
 
-
+# TODO
+Upload version file.
+Remove the hardcoded version (v3.0) from poc.yml. Instead, work it out from a tag?

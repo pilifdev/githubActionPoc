@@ -22,6 +22,17 @@ jobs:
           path: output/termsAndConditions.html
           retention-days: 1
 
+  prepareVersionFile:
+    runs-on: ubuntu-18.04
+    steps:
+      - shell: bash
+        run: |
+          'v3.0' > version.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: version
+          path: version.txt
+
   uploadHtmlFile:
     needs: prepareHtmlFile
     runs-on: ubuntu-18.04
@@ -29,10 +40,12 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: termsAndConditions
-      - uses: garygrossgarten/github-action-scp@release
-        with:
-          local: termsAndConditions.html
-          remote: scp/tsandcs/termsAndConditions.html
-          host: ${{ secrets.TSANDCS_HOST }}
-          username: ${{ secrets.TSANDCS_SSH_USER }}
-          password: ${{ secrets.TSANDCS_SSH_PASSWORD }}
+
+#      - uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.TSANDCS_HOST }}
+#          username: ${{ secrets.TSANDCS_SSH_USER }}
+#          port: ${{ secrets.PORT }}
+#          key: ${{ secrets.KEY }}
+#          source: "tests/a.txt,tests/b.txt"
+#          target: "test"
