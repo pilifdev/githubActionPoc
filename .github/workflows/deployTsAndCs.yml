@@ -15,7 +15,7 @@ jobs:
           mkdir output
       - uses: docker://pandoc/latex:2.9
         with:
-          args: --from markdown --to html5 --output=output/termsAndConditions.html termsAndConditions.md
+          args: --from markdown --to html5 --css omse.css --output=output/termsAndConditions.html termsAndConditions.md
       - uses: actions/upload-artifact@master
         with:
           name: termsAndConditions
