@@ -1,0 +1,10 @@
+name: Deploy TsAndCs
+
+on: push
+
+jobs:
+  deploys_tsAndCs:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: ./.github/actions/poc-action
+      
