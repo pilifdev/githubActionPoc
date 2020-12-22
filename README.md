@@ -16,3 +16,4 @@ Inspired from:
 # TODO
 Upload version file.
 Remove the hardcoded version (v3.0) from poc.yml. Instead, work it out from a tag?
+How will we work out the history of Ts&Cs & their versions?
