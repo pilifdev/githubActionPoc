@@ -19,6 +19,14 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: termsAndConditions
-          path: output
+          path: termsAndConditions.html
           retention-days: 1
-          
+#
+#      - uses: garygrossgarten/github-action-scp@release
+#        with:
+#          local: test/oof.txt
+#          remote: scp/single/oof.txt
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.SSH_USER }}
+#          password: ${{ secrets.PASSWORD }}
+#          
