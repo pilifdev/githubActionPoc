@@ -18,6 +18,7 @@ jobs:
           args: --from markdown --to html5 --output=output/termsAndConditions.html termsAndConditions.md
       - uses: actions/upload-artifact@master
         with:
-          name: output
+          name: termsAndConditions
           path: output
+          retention-days: 1
           
