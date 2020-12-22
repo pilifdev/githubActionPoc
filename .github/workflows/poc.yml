@@ -19,7 +19,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: termsAndConditions
-          path: termsAndConditions.html
+          path: output/termsAndConditions.html
           retention-days: 1
 #
 #      - uses: garygrossgarten/github-action-scp@release
@@ -29,4 +29,4 @@ jobs:
 #          host: ${{ secrets.HOST }}
 #          username: ${{ secrets.SSH_USER }}
 #          password: ${{ secrets.PASSWORD }}
-#          
+#
