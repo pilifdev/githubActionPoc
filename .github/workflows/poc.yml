@@ -30,8 +30,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/download-artifact@v2
-      with:
-        name: termsAndConditions
+        with:
+          name: termsAndConditions
   #      - uses: appleboy/scp-action@master
   #        with:
   #          host: ${{ secrets.TSANDCS_HOST }}
