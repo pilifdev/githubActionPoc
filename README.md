@@ -23,7 +23,7 @@ References used:
 
 
 # TODO
-Define the environment variable.
+Reference the environment variable: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions
 Upload version file.
 Remove the hardcoded version (v3.0) from poc.yml. Instead, work it out from a tag?
 How will we work out the history of Ts&Cs & their versions?
