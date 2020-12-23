@@ -23,9 +23,10 @@ In poc.yml, for a given job (see tagAndPrepareVersionFile), we set the target en
 
 - Note on the tag creation:
     - v0.0.1 was created with commit message = fix(pencil): downgrading to v5 as no tag generated with v5.1
-        - convention to follow is explained at https://github.com/mathieudutour/github-tag-action#bumping
+        - convention to follow for the commit msg is explained at https://github.com/mathieudutour/github-tag-action#bumping
     - v0.0.2 is an anomaly. It was created with commit msg = tidying the README
         - this was before I added default_bump: false.
         - now, if you do not follow the commit convention, the workflow will fail. See commit msg = to limit the retention time on the version file and to test default_bump
-    
+    - if you do not want the tagging to happen, use the option dry_run described at https://github.com/mathieudutour/github-tag-action#debugging.
+
 - Note that the scp-action steps have been left commented out as we do not have a sandbox server onto which we can upload termsAndConditions.html & version.txt.
