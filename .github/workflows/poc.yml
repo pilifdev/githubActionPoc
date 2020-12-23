@@ -67,8 +67,6 @@ jobs:
 #          source: "termsAndConditions.html"
 #          target: "termsAndConditions.html"
 
-# In uploadVersionFile, we use secrets that have been defined per environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
-# Here, we are targeting the dev environment (see name: dev).
   uploadVersionFile:
     needs: tagAndPrepareVersionFile
     environment:
