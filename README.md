@@ -21,8 +21,3 @@ References used:
     - https://github.com/appleboy/scp-action
 
 Note that the scp-action steps have been left commented out as we do not have a sandbox server onto which we can upload termsAndConditions.html & version.txt.
-
-
-# TODO
-Run job tagAndPrepareVersionFile only if prepareHtmlFile was successful.
-How will we work out the history of Ts&Cs & their versions?
