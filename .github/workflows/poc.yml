@@ -21,22 +21,34 @@ jobs:
           path: output/termsAndConditions.html
           retention-days: 1
 
-# In prepareVersionFile, we use secrets.KEY to demonstrate that environment-specific secrets can be accessed.
-# Here, we are talking about KEY which has been defined for the dev environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
-# Down the line, we will want to replace secrets.KEY with a tag (see https://github.com/marketplace/actions/github-tag).
-  prepareVersionFile:
+  tagAndPrepareVersionFile:
     environment:
       name: dev
     runs-on: ubuntu-18.04
     steps:
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create a GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
       - shell: bash
         run: |
-          echo ${{ secrets.KEY }} > version.txt
+          echo ${{ steps.tag_version.outputs.new_tag }} > version.txt
       - uses: actions/upload-artifact@v2
         with:
           name: version
           path: version.txt
 
+# In uploadHtmlFile, we use secrets that have been defined per environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
+# Here, we are targeting the dev environment (see name: dev).
   uploadHtmlFile:
     needs: prepareHtmlFile
     environment:
@@ -55,8 +67,10 @@ jobs:
 #          source: "termsAndConditions.html"
 #          target: "termsAndConditions.html"
 
+# In uploadVersionFile, we use secrets that have been defined per environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
+# Here, we are targeting the dev environment (see name: dev).
   uploadVersionFile:
-    needs: prepareVersionFile
+    needs: tagAndPrepareVersionFile
     environment:
       name: dev
     runs-on: ubuntu-18.04

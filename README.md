@@ -24,5 +24,5 @@ Note that the scp-action steps have been left commented out as we do not have a 
 
 
 # TODO
-Remove the hardcoded version (v3.0) from poc.yml. Instead, work it out from a tag?
+Run job tagAndPrepareVersionFile only if prepareHtmlFile was successful.
 How will we work out the history of Ts&Cs & their versions?
