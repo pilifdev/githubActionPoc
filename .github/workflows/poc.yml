@@ -19,6 +19,7 @@ jobs:
           release_branches: main
           tag_prefix: v
           create_annotated_tag: false
+          default_bump: false
           dry_run: false
       - name: Create a GitHub release
         uses: actions/create-release@v1
@@ -35,6 +36,7 @@ jobs:
         with:
           name: version
           path: version.txt
+          retention-days: 1
 
   uploadVersionFile:
     needs: tagAndPrepareVersionFile
