@@ -21,6 +21,9 @@ jobs:
           path: output/termsAndConditions.html
           retention-days: 1
 
+# In prepareVersionFile, we use secrets.KEY to demonstrate that environment-specific secrets can be accessed.
+# Here, we are talking about KEY which has been defined for the dev environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
+# Down the line, we will want to replace secrets.KEY with a tag (see https://github.com/marketplace/actions/github-tag).
   prepareVersionFile:
     environment:
       name: dev
@@ -36,6 +39,8 @@ jobs:
 
   uploadHtmlFile:
     needs: prepareHtmlFile
+    environment:
+      name: dev
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/download-artifact@v2
@@ -43,15 +48,17 @@ jobs:
           name: termsAndConditions
 #      - uses: appleboy/scp-action@master
 #        with:
-#          host: ${{ env.dev.TSANDCS_HOST }}
-#          username: ${{ env.dev.TSANDCS_SSH_USER }}
-#          port: ${{ env.dev.PORT }}
-#          key: ${{ env.dev.KEY }}
+#          host: ${{ secrets.TSANDCS_HOST }}
+#          username: ${{ secrets.TSANDCS_SSH_USER }}
+#          port: ${{ secrets.PORT }}
+#          key: ${{ secrets.KEY }}
 #          source: "termsAndConditions.html"
 #          target: "termsAndConditions.html"
 
   uploadVersionFile:
     needs: prepareVersionFile
+    environment:
+      name: dev
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/download-artifact@v2
