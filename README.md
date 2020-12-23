@@ -6,9 +6,8 @@
 
 
 # Strategy
-- Have a branch per environment (dev, test, etc.). Currently, for this poc, we have only one branch withPandocContainer
-which is for dev. In poc.yml, we set the variable environment to 'dev'. It will be used to pull the correct credentials 
-to upload artifacts to the relevant server.
+- Have a branch per environment (dev, test, etc.). Currently, for this poc, we have only one branch main which is for dev. 
+In poc.yml, we set the variable environment to 'dev'. It will be used to pull the correct credentials to upload artifacts to the relevant server.
 - When we want to upload new Ts & Cs for a given environment, we just do a PR to its branch and when merged, thanks to the 
 'on push' defined in poc.yml, the workflow will be triggered.
 
