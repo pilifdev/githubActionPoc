@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  environment: 'dev'
-
 jobs:
   prepareHtmlFile:
     runs-on: ubuntu-18.04
@@ -25,11 +22,13 @@ jobs:
           retention-days: 1
 
   prepareVersionFile:
+    environment:
+      name: dev
     runs-on: ubuntu-18.04
     steps:
       - shell: bash
         run: |
-          echo ${{ secrets.REPO_SECRET }} > version.txt
+          echo ${{ secrets.KEY }} > version.txt
       - uses: actions/upload-artifact@v2
         with:
           name: version
