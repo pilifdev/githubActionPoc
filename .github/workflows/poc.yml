@@ -60,23 +60,26 @@ jobs:
           fetch-depth: '0'
       - name: Bump version and push tag
         id: tag_version
-        uses: salsify/action-detect-and-tag-new-version@v2
+        uses: mathieudutour/github-tag-action@v5
         with:
-          version-command: |
-            cat forThePortal/termsAndConditions.html
-          create-tag: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: main
+          tag_prefix: v
+          create_annotated_tag: false
+          default_bump: false
+          dry_run: false
       - name: Create a GitHub release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag_version.outputs.tag }}
-          release_name: Release ${{ steps.tag_version.outputs.tag }}
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: 'TBC steps.tag_version.outputs.changelog'
       # The next 2 steps are no more required as we will use the GitHub API to work out the latest version. See README.md.
       - shell: bash
         run: |
-          echo ${{ steps.tag_version.outputs.tag }} > version.txt
+          echo ${{ steps.tag_version.outputs.new_tag }} > version.txt
       - uses: actions/upload-artifact@v2
         with:
           name: version
