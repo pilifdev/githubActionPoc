@@ -34,3 +34,8 @@ In poc.yml, for a given job (see tagAndRelease), we set the target environment (
 
 # To work out all existing tags and determine the latest tag
 curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/pilif42/githubActionPoc/git/refs/tags
+Then, when you have the tag 'v0.0.19', simply GET to https://github.com/pilif42/githubActionPoc/blob/v0.0.19/termsAndConditions.html
+
+
+# TODOs
+- Rather than hardcoding 'TsAndCs updated' for the commit message, identify the commit message which triggered the workflow and reuse it here.
