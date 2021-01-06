@@ -11,15 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          mkdir output
+          mkdir -p forThePortal
       - uses: docker://pandoc/latex:2.9
         with:
-          args: --from markdown --to html5 --css omse.css --output=output/termsAndConditions.html termsAndConditions.md
+          args: --from markdown --to html5 --css omse.css --output=forThePortal/termsAndConditions.html termsAndConditions.md
       # The next step is no more required as we now push to GitHub the .html file.
       - uses: actions/upload-artifact@master
         with:
           name: termsAndConditions
-          path: output/termsAndConditions.html
+          path: forThePortal/termsAndConditions.html
           retention-days: 1
       - uses: mikeal/publish-to-github-action@master
         env:
