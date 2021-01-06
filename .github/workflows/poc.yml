@@ -14,11 +14,12 @@ jobs:
           mkdir output
       - uses: docker://pandoc/latex:2.9
         with:
-          args: --from markdown --to html5 --css omse.css --output=output/termsAndConditions.html termsAndConditions.md
+          args: --from markdown --to html5 --css omse.css --output=forThePortal/termsAndConditions.html termsAndConditions.md
+      # The next step is no more required as we now push to GitHub the .html file.
       - uses: actions/upload-artifact@master
         with:
           name: termsAndConditions
-          path: output/termsAndConditions.html
+          path: forThePortal/termsAndConditions.html
           retention-days: 1
       - uses: mikeal/publish-to-github-action@master
         env:
@@ -27,6 +28,7 @@ jobs:
 
   # In uploadHtmlFile, we use secrets that have been defined per environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
   # Here, we are targeting the dev environment (see name: dev).
+  # As we now push to GitHub the .html file, this whole job can be removed.
   uploadHtmlFile:
     needs: prepareHtmlFile
     environment:
@@ -69,6 +71,7 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+      # The next 2 steps are no more required as we will use the GitHub API to work out the latest version. See README.md.
       - shell: bash
         run: |
           echo ${{ steps.tag_version.outputs.new_tag }} > version.txt
@@ -78,20 +81,21 @@ jobs:
           path: version.txt
           retention-days: 1
 
-  uploadVersionFile:
-    needs: tagAndPrepareVersionFile
-    environment:
-      name: dev
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: version
-  #      - uses: appleboy/scp-action@master
-  #        with:
-  #          host: ${{ secrets.TSANDCS_HOST }}
-  #          username: ${{ secrets.TSANDCS_SSH_USER }}
-  #          port: ${{ secrets.PORT }}
-  #          key: ${{ secrets.KEY }}
-  #          source: "version.txt"
-  #          target: "version.txt"
+# The next job is not required as we can use the GitHub API to work out the latest version. See README.md.
+#  uploadVersionFile:
+#    needs: tagAndPrepareVersionFile
+#    environment:
+#      name: dev
+#    runs-on: ubuntu-18.04
+#    steps:
+#      - uses: actions/download-artifact@v2
+#        with:
+#          name: version
+#  #      - uses: appleboy/scp-action@master
+#  #        with:
+#  #          host: ${{ secrets.TSANDCS_HOST }}
+#  #          username: ${{ secrets.TSANDCS_SSH_USER }}
+#  #          port: ${{ secrets.PORT }}
+#  #          key: ${{ secrets.KEY }}
+#  #          source: "version.txt"
+#  #          target: "version.txt"

@@ -30,3 +30,7 @@ In poc.yml, for a given job (see tagAndPrepareVersionFile), we set the target en
     - if you do not want the tagging to happen, use the option dry_run described at https://github.com/mathieudutour/github-tag-action#debugging.
 
 - Note that the scp-action steps have been left commented out as we do not have a sandbox server onto which we can upload termsAndConditions.html & version.txt.
+
+
+# To work out all existing tags and determine the latest tag
+curl -H "Accept: application/vnd.github.v3+json"  https://api.github.com/repos/pilif42/githubActionPoc/git/refs/tags
