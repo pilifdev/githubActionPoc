@@ -47,6 +47,7 @@ jobs:
 #  #          source: "termsAndConditions.html"
 #  #          target: "termsAndConditions.html"
 
+# Below, fetch-depth: 0 may be improved as it means Fetch all history for all tags and branches. We only need the last push with termsAndConditions.html.
   tagAndPrepareVersionFile:
     needs: prepareHtmlFile
     environment:
