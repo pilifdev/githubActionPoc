@@ -26,7 +26,7 @@ jobs:
           github_token: '${{ secrets.GITHUB_TOKEN  }}'
           source_folder: output
           target_folder: portalOnly
-          if: success() && github.event == 'push'
+        if: success() && github.event == 'push'
 
   # In uploadHtmlFile, we use secrets that have been defined per environment at https://github.com/pilif42/githubActionPoc/settings/secrets/actions
   # Here, we are targeting the dev environment (see name: dev).
