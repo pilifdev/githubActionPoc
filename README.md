@@ -7,7 +7,7 @@
 
 # Strategy
 - Have a branch per environment (dev, test, etc.). For this poc, we have only one branch main which is for dev. 
-In poc.yml, for a given job (see tagAndPrepareVersionFile), we set the target environment (see name: dev). It will be used to pull the correct credentials.
+In poc.yml, for a given job (see tagAndRelease), we set the target environment (see name: dev). It will be used to pull the correct credentials.
 - When we want to upload new Ts & Cs for a given environment, we just do a PR to its branch and when merged, thanks to the 
 'on push' defined in poc.yml, the workflow will be triggered.
 

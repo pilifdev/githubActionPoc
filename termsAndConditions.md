@@ -1,4 +1,4 @@
-# Terms and Conditions changed
+# Terms and Conditions at counter 2
 ## This is an h2 tag
 #### This is an h4 tag
 
