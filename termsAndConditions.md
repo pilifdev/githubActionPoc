@@ -1,4 +1,4 @@
-# Terms and Conditions
+# Terms and Conditions, an h1 tag
 ## This is an h2 tag
 #### This is an h4 tag
 
